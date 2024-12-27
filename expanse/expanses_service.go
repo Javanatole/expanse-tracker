@@ -1,7 +1,6 @@
 package expanse
 
 import (
-	"fmt"
 	"time"
 )
 
@@ -35,8 +34,6 @@ func (expansesService *ExpansesService) AddExpense(description string, amount fl
 	if err != nil {
 		return err
 	}
-	fmt.Println(expanses)
-
 	expanse := Expanse{
 		Id:          expanses.FindLastId() + 1,
 		Description: description,
@@ -45,5 +42,18 @@ func (expansesService *ExpansesService) AddExpense(description string, amount fl
 	}
 	expanses.Expanses = append(expanses.Expanses, expanse)
 
+	return expansesService.Repo.Save(expanses)
+}
+
+func (expansesService *ExpansesService) DeleteExpense(id int) error {
+	expanses, err := expansesService.Repo.Load()
+	if err != nil {
+		return err
+	}
+	index, err := expanses.FindIndex(id)
+	if err != nil {
+		return err
+	}
+	expanses.DeleteElement(index)
 	return expansesService.Repo.Save(expanses)
 }
