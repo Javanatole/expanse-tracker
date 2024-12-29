@@ -38,7 +38,7 @@ func (expansesService *ExpansesService) AddExpense(description string, amount fl
 		Id:          expanses.FindLastId() + 1,
 		Description: description,
 		Amount:      amount,
-		Date:        time.Now().Format(time.RFC3339),
+		Date:        time.Now().Format(time.DateTime),
 	}
 	expanses.Expanses = append(expanses.Expanses, expanse)
 
@@ -56,4 +56,12 @@ func (expansesService *ExpansesService) DeleteExpense(id int) error {
 	}
 	expanses.DeleteElement(index)
 	return expansesService.Repo.Save(expanses)
+}
+
+func (expansesService *ExpansesService) ListExpanses() ([]Expanse, error) {
+	expanses, err := expansesService.Repo.Load()
+	if err != nil {
+		return []Expanse{}, err
+	}
+	return expanses.Expanses, nil
 }
