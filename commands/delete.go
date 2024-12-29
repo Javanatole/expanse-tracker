@@ -8,7 +8,7 @@ import (
 )
 
 func Delete() {
-	// create a new flag based on add command
+	// create a new flag based on delete command
 	deleteFlags := flag.NewFlagSet("delete", flag.ExitOnError)
 	// configure id option
 	id := deleteFlags.Int("id", 0, "id to delete")
@@ -23,8 +23,8 @@ func Delete() {
 		return
 	}
 	service := expanse.GetExpansesService()
-	err = service.DeleteExpense(*id)
+	err = service.DeleteExpanse(*id)
 	if err != nil {
-		fmt.Println("Can't add expense to bdd")
+		fmt.Println("Can't delete expanse from bdd")
 	}
 }

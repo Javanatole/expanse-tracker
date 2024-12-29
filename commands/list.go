@@ -16,7 +16,6 @@ func List() {
 	for _, element := range expanses {
 		formattedLayout, err := time.Parse(time.DateTime, element.Date)
 		if err != nil {
-			fmt.Println(err)
 			fmt.Println("Failed to parse date")
 			return
 		}

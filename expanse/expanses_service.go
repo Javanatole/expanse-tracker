@@ -4,6 +4,7 @@ import (
 	"time"
 )
 
+// GetExpansesService generate expanses service
 func GetExpansesService() *ExpansesService {
 	// File name to store the tasks
 	filename := "expanses.json"
@@ -29,7 +30,8 @@ type ExpansesService struct {
 	Repo JSONStorage
 }
 
-func (expansesService *ExpansesService) AddExpense(description string, amount float64) error {
+// AddExpanse add expanse with his description and amount
+func (expansesService *ExpansesService) AddExpanse(description string, amount float64) error {
 	expanses, err := expansesService.Repo.Load()
 	if err != nil {
 		return err
@@ -45,7 +47,8 @@ func (expansesService *ExpansesService) AddExpense(description string, amount fl
 	return expansesService.Repo.Save(expanses)
 }
 
-func (expansesService *ExpansesService) DeleteExpense(id int) error {
+// DeleteExpanse delete specific expanse
+func (expansesService *ExpansesService) DeleteExpanse(id int) error {
 	expanses, err := expansesService.Repo.Load()
 	if err != nil {
 		return err

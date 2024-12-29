@@ -9,7 +9,7 @@ import (
 )
 
 func Summary() {
-	// create a new flag based on add command
+	// create a new flag based on summary command
 	monthFlags := flag.NewFlagSet("summary", flag.ExitOnError)
 	// configure month option
 	month := monthFlags.Int("month", -1, "month to summary")
@@ -43,7 +43,7 @@ func Summary() {
 				totalExpanses += element.Amount
 			}
 		}
-		fmt.Println(fmt.Sprintf("Total Expanses: $%v", totalExpanses))
+		fmt.Println(fmt.Sprintf("Total Expanses for month %d: $%v", *month, totalExpanses))
 
 	}
 }

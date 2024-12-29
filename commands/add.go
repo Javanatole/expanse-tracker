@@ -29,7 +29,7 @@ func Add() {
 		return
 	}
 	service := expanse.GetExpansesService()
-	err = service.AddExpense(*desc, *amount)
+	err = service.AddExpanse(*desc, *amount)
 	if err != nil {
 		fmt.Println("Can't add expense to bdd")
 	}
